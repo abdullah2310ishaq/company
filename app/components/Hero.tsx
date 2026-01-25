@@ -8,7 +8,7 @@ export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <section className="relative w-full bg-gray-100 overflow-hidden">
+    <section id="home" className="relative w-full bg-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-0 sm:px-1 lg:px-2 xl:px-2 py-6 lg:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Side - Profile and Content */}

@@ -76,7 +76,7 @@ export default function AboutUs() {
   const truncatedDescription = agencyDescription.substring(0, 150) + "...";
 
   return (
-    <section className="bg-gray-100 py-12 lg:py-20">
+    <section id="about" className="bg-gray-100 py-12 lg:py-20">
       <div className="max-w-7xl mx-auto px-0 sm:px-1 lg:px-2 xl:px-2">
         {/* Section 1: About our agency */}
         <div className="mb-16">

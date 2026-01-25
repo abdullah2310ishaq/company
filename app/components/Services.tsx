@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 interface Service {
   id: string;
   title: string;
@@ -85,24 +87,49 @@ const services: Service[] = [
   },
   {
     id: "6",
-    title: "Digital Marketing",
-    icon: "📈",
+    title: "Software Development",
+    icon: "💻",
     subServices: [
-      "SEO Services",
-      "Social Media Marketing",
-      "Content Marketing",
-      "PPC Advertising",
-      "Email Marketing",
-      "Analytics & Reporting",
-      "Brand Strategy",
-      "Marketing Automation",
+      "Software Development",
+      "AI Development",
+      "Chatbot Development",
+      "QA & Review",
+      "User Testing",
+      "Databases",
+      "System Architecture",
+      "DevOps & CI/CD",
+    ],
+  },
+  {
+    id: "7",
+    title: "Product Development",
+    icon: "🚀",
+    subServices: [
+      "Product Strategy",
+      "MVP Development",
+      "Product Design",
+      "Agile Development",
+      "Product Launch",
+      "Product Analytics",
+      "Feature Development",
+      "Product Roadmap",
     ],
   },
 ];
 
 export default function Services() {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  const openModal = (service: Service) => {
+    setSelectedService(service);
+  };
+
+  const closeModal = () => {
+    setSelectedService(null);
+  };
+
   return (
-    <section className="bg-white py-20">
+    <section id="services" className="bg-gray-100 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           {/* Left Side - Text Content */}
@@ -115,7 +142,7 @@ export default function Services() {
               Provide us with your details, and we'll customize a proposal just
               for you.
             </p>
-            <button className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
               Request Pricing
             </button>
           </div>
@@ -127,25 +154,25 @@ export default function Services() {
                 {services.map((service) => (
                   <div
                     key={service.id}
-                    className="flex-shrink-0 w-80 bg-white border-2 border-gray-100 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                    className="flex-shrink-0 w-80 bg-white border-2 border-gray-100 rounded-xl p-5 hover:shadow-lg transition-shadow"
                   >
                     {/* Service Icon */}
-                    <div className="text-5xl mb-4">{service.icon}</div>
+                    <div className="text-4xl mb-3">{service.icon}</div>
 
                     {/* Service Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
                       {service.title}
                     </h3>
 
-                    {/* Sub Services List */}
-                    <ul className="space-y-3 mb-6">
-                      {service.subServices.map((subService, index) => (
+                    {/* Sub Services List - Show only first 3 */}
+                    <ul className="space-y-2 mb-4">
+                      {service.subServices.slice(0, 3).map((subService, index) => (
                         <li
                           key={index}
                           className="flex items-center gap-2 text-gray-700"
                         >
                           <svg
-                            className="w-5 h-5 text-green-600 flex-shrink-0"
+                            className="w-4 h-4 text-blue-600 flex-shrink-0"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -161,19 +188,19 @@ export default function Services() {
                     </ul>
 
                     {/* See More Link */}
-                    <a
-                      href="#"
-                      className="text-green-600 hover:text-green-700 font-medium text-sm"
+                    <button
+                      onClick={() => openModal(service)}
+                      className="text-blue-600 hover:text-blue-700 font-medium text-sm underline"
                     >
                       See more
-                    </a>
+                    </button>
                   </div>
                 ))}
               </div>
 
               {/* Navigation Arrows */}
               <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors shadow-lg z-10"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll left"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -198,7 +225,7 @@ export default function Services() {
                 </svg>
               </button>
               <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors shadow-lg z-10"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll right"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -226,6 +253,83 @@ export default function Services() {
           </div>
         </div>
       </div>
+
+      {/* Service Detail Modal */}
+      {selectedService && (
+        <div
+          className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-xl w-full max-h-[80vh] overflow-hidden shadow-2xl relative flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between z-10 flex-shrink-0">
+              <h2 className="text-xl font-bold text-gray-900">
+                The Services We Provide
+              </h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Close modal"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Scrollable Modal Content */}
+            <div className="overflow-y-auto flex-1">
+              <div className="p-4">
+                {/* Service Icon and Title */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-4xl">{selectedService.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {selectedService.title}
+                  </h3>
+                </div>
+
+                {/* Sub Services List */}
+                <ul className="space-y-2">
+                  {selectedService.subServices.map((subService, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-gray-700"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-3 h-3 text-blue-600"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-sm">{subService}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
