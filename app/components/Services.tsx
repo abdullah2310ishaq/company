@@ -139,7 +139,7 @@ export default function Services() {
             </h2>
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
               Discover our range of services to match your project needs.
-              Provide us with your details, and we'll customize a proposal just
+              Provide us with your details, and we will customize a proposal just
               for you.
             </p>
             <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">

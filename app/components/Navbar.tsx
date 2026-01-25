@@ -231,17 +231,17 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Calendly Widget Container */}
-            <div className="overflow-y-auto flex-1">
-              <iframe
-                src="https://calendly.com/your-username/meeting" // Replace with your Calendly URL
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                className="min-h-[600px] w-full"
-                title="Schedule a call"
-              ></iframe>
-            </div>
+              {/* Calendly Widget Container */}
+              <div className="overflow-y-auto flex-1">
+                <iframe
+                  src={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/your-username/meeting"}
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  className="min-h-[600px] w-full"
+                  title="Schedule a call"
+                ></iframe>
+              </div>
           </div>
         </div>
       )}

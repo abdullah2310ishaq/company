@@ -91,8 +91,8 @@ export default function ContactForm() {
             Get In Touch
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Have a project in mind? Let's discuss how we can help bring your
-            app idea to life. Fill out the form below and we'll get back to you
+            Have a project in mind? Lets discuss how we can help bring your
+            app idea to life. Fill out the form below and well get back to you
             as soon as possible.
           </p>
         </div>
@@ -293,7 +293,7 @@ export default function ContactForm() {
 
             {/* Note */}
             <p className="text-sm text-gray-500 text-center">
-              By submitting this form, you agree to our privacy policy. We'll
+              By submitting this form, you agree to our privacy policy. We will
               never share your information with third parties.
             </p>
           </form>

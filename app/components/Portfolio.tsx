@@ -316,7 +316,7 @@ export default function Portfolio() {
               {/* Calendly Widget Container */}
               <div className="overflow-y-auto flex-1">
                 <iframe
-                  src="https://calendly.com/your-username/meeting" // Replace with your Calendly URL
+                  src={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/your-username/meeting"}
                   width="100%"
                   height="100%"
                   frameBorder="0"
