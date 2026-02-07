@@ -70,10 +70,10 @@ export default function AppIndustries() {
             App Industries
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Duseca makes apps for every industry. Our skilled professionals
+            Fizzup makes apps for every industry. Our skilled professionals
             create applications for education, healthcare, e-commerce,
             entertainment, and more. Each app is designed to meet specific
-            needs and deliver great results. With Duseca, every industry gets
+            needs and deliver great results. With Fizzup, every industry gets
             top-quality apps.
           </p>
         </div>

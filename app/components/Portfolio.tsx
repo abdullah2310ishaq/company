@@ -79,14 +79,14 @@ export default function Portfolio() {
           <div className="lg:col-span-5 flex flex-col justify-between order-2 lg:order-1">
             <div className="space-y-4 sm:space-y-6">
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Duseca has successfully made over 700+ mobile apps, with a team
+                Fizzup has successfully made over 700+ mobile apps, with a team
                 of 50+ people. Our customers love us, giving 450+ reviews and a
                 5-star rating. We&apos;re proud to help bring your app ideas to
                 life with care and quality.
               </p>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Book a meeting with Wajahat Malek for a simple chat on how to
-                build your app. He and our Duseca team will show you each step
+                build your app. He and our Fizzup team will show you each step
                 to make your app idea real.
               </p>
             </div>
@@ -139,9 +139,9 @@ export default function Portfolio() {
                       <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[9px] sm:text-[10px] font-semibold text-gray-700">
                         Case Study
                       </div>
-                      {/* Duseca Logo */}
+                      {/* Fizzup Logo */}
                       <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[9px] sm:text-[10px] font-bold text-gray-900">
-                        Duseca
+                        Fizzup
                       </div>
                     </div>
 
@@ -186,7 +186,7 @@ export default function Portfolio() {
               <div className="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between z-10 flex-shrink-0">
                 <div className="flex items-center gap-2 sm:gap-4">
                   <div className="text-base sm:text-lg font-bold text-gray-900">
-                    Duseca
+                    Fizzup
                   </div>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-4">

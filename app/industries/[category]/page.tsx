@@ -590,7 +590,7 @@ export default function IndustryPage({
               {/* Company Introduction */}
               <div className="space-y-1">
                 <p className="text-xs lg:text-sm text-gray-600 font-normal">
-                  Hello, we are Duseca Software
+                  Hello, we are Fizzup Software
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="text-xs lg:text-sm text-gray-600 font-medium">

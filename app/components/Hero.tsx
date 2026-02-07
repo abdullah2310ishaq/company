@@ -27,12 +27,12 @@ export default function Hero() {
             {/* Company Introduction */}
             <div className="space-y-1">
               <p className="text-xs sm:text-sm lg:text-base text-gray-600 font-normal">
-                Hello, we are Duseca Software
+                Hello, we are Fizzup Software
               </p>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
               Mobile App Development Agency for Android App and iOS App Development
             </h1>
 

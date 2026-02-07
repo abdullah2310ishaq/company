@@ -19,16 +19,16 @@ const teamMembers: TeamMember[] = [
     name: "Wajahat Malek",
     title: "Chief Executive Officer",
     image: "/sallu.png",
-    description: "Founder and Chief Executive Officer of Duseca Software with a demonstrated history of working in the mobile app development industry...",
-    fullDescription: "Founder and Chief Executive Officer of Duseca Software with a demonstrated history of working in IT Industry. Building smarter mobile apps and digital products for my clients.",
+    description: "Founder and Chief Executive Officer of Fizzup Software with a demonstrated history of working in the mobile app development industry...",
+    fullDescription: "Founder and Chief Executive Officer of Fizzup Software with a demonstrated history of working in IT Industry. Building smarter mobile apps and digital products for my clients.",
   },
   {
     id: 2,
     name: "Zayd Rizvi",
     title: "Chief Operating Officer",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-    description: "As the Chief Operating Officer at Duseca Software, Zayd contributed to the strategic planning and operational excellence of the company...",
-    fullDescription: "As the Chief Operating Officer at Duseca Software, Zayd contributed to the strategic planning and operational excellence of the company, ensuring smooth day-to-day operations and driving business growth.",
+    description: "As the Chief Operating Officer at Fizzup Software, Zayd contributed to the strategic planning and operational excellence of the company...",
+    fullDescription: "As the Chief Operating Officer at Fizzup Software, Zayd contributed to the strategic planning and operational excellence of the company, ensuring smooth day-to-day operations and driving business growth.",
   },
   {
     id: 3,
@@ -71,7 +71,7 @@ export default function AboutUs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const agencyDescription = `Duseca Software, a premier agency in Android App Development and iOS App Development, excels in creating high-quality, scalable mobile apps. Our expertise extends to AI integration, dating apps, Uber-like food delivery app development, E-Commerce solutions, and custom mobile applications tailored to your business needs. We combine cutting-edge technology with user-centric design to deliver apps that drive business growth and user engagement.`;
+  const agencyDescription = `Fizzup Software, a premier agency in Android App Development and iOS App Development, excels in creating high-quality, scalable mobile apps. Our expertise extends to AI integration, dating apps, Uber-like food delivery app development, E-Commerce solutions, and custom mobile applications tailored to your business needs. We combine cutting-edge technology with user-centric design to deliver apps that drive business growth and user engagement.`;
 
   const truncatedDescription = agencyDescription.substring(0, 150) + "...";
 
@@ -312,7 +312,7 @@ export default function AboutUs() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end"
+              className="fixed inset-0 bg-black/10 backdrop-blur-sm z-50 flex items-end"
               onClick={() => setIsBottomSheetOpen(false)}
             >
               <motion.div
@@ -331,7 +331,7 @@ export default function AboutUs() {
             <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
               <div className="min-w-0 flex-1 pr-2">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                  Duseca Software team members
+                  Fizzup Software team members
                 </h2>
                 <div className="flex items-center gap-2 mt-2">
                   <svg

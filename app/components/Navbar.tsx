@@ -81,7 +81,7 @@ export default function Navbar() {
               {/* Logo - Left */}
               <div className="flex-shrink-0">
                 <a href="#home" onClick={(e) => handleLinkClick(e, "#home")} className="text-xl md:text-2xl font-bold text-gray-900">
-                  Duseca
+                  Fizzup
                 </a>
               </div>
 
@@ -176,7 +176,7 @@ export default function Navbar() {
                     <h3 className="text-sm md:text-base font-bold text-gray-900 truncate">
                       Muhammad Salman
                     </h3>
-                    <p className="text-xs text-gray-600 truncate">C.E.O @ Duseca Software</p>
+                    <p className="text-xs text-gray-600 truncate">C.E.O @ Fizzup Software</p>
                   </div>
                 </div>
 

@@ -47,7 +47,7 @@ export default function ContactForm() {
           phone: formData.phone,
           message: formData.message,
           // Optional: Add custom fields
-          form_name: "Duseca Contact Form",
+          form_name: "Fizzup Contact Form",
         }),
       });
 
