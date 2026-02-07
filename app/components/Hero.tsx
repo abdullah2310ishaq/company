@@ -58,9 +58,9 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Right Side - Hero Image */}
-          <div className="relative w-full order-1 lg:order-2">
-            <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden">
+          {/* Right Side - Hero Image (parent controls clipping; Image just fills) */}
+          <div className="relative w-full order-1 lg:order-2 mt-2 sm:mt-3 lg:mt-4">
+            <div className="relative w-full h-[200px] sm:h-[250px] md:h-[290px] lg:h-[310px] xl:h-[330px] overflow-hidden rounded-3xl shadow-lg">
               <Image
                 src="/hero.jpeg"
                 alt="Mobile App Development Agency"
