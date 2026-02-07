@@ -130,20 +130,20 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="bg-gray-100 py-20">
+    <section id="services" className="bg-gray-100 py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 items-start">
           {/* Left Side - Text Content */}
           <div className="lg:col-span-1">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Services We Provide
             </h2>
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 leading-relaxed">
               Discover our range of services to match your project needs.
               Provide us with your details, and we will customize a proposal just
               for you.
             </p>
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <button className="bg-blue-600 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto">
               Request Pricing
             </button>
           </div>
@@ -151,17 +151,17 @@ export default function Services() {
           {/* Right Side - Scrollable Service Cards */}
           <div className="lg:col-span-2">
             <div className="relative">
-              <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+              <div className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 sm:-mx-0 px-4 sm:px-0">
                 {services.map((service) => (
                   <div
                     key={service.id}
-                    className="flex-shrink-0 w-80 bg-white border-2 border-gray-100 rounded-xl p-5 hover:shadow-lg transition-shadow"
+                    className="flex-shrink-0 w-[280px] sm:w-80 bg-white border-2 border-gray-100 rounded-xl p-4 sm:p-5 hover:shadow-lg transition-shadow"
                   >
                     {/* Service Icon */}
-                    <div className="text-4xl mb-3">{service.icon}</div>
+                    <div className="text-3xl sm:text-4xl mb-3">{service.icon}</div>
 
                     {/* Service Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
                       {service.title}
                     </h3>
 
@@ -183,7 +183,7 @@ export default function Services() {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <span className="text-sm">{subService}</span>
+                          <span className="text-xs sm:text-sm">{subService}</span>
                         </li>
                       ))}
                     </ul>
@@ -191,7 +191,7 @@ export default function Services() {
                     {/* See More Link */}
                     <button
                       onClick={() => openModal(service)}
-                      className="text-blue-600 hover:text-blue-700 font-medium text-sm underline"
+                      className="text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-sm underline"
                     >
                       See more
                     </button>
@@ -199,9 +199,9 @@ export default function Services() {
                 ))}
               </div>
 
-              {/* Navigation Arrows */}
+              {/* Navigation Arrows - Hidden on mobile, visible on larger screens */}
               <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
+                className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll left"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -226,7 +226,7 @@ export default function Services() {
                 </svg>
               </button>
               <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
+                className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll right"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -258,21 +258,21 @@ export default function Services() {
       {/* Service Detail Modal */}
       {selectedService && (
         <div
-          className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={closeModal}
         >
           <div
-            className="bg-white rounded-3xl max-w-xl w-full max-h-[80vh] overflow-hidden shadow-2xl relative flex flex-col"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-hidden shadow-2xl relative flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between z-10 flex-shrink-0">
-              <h2 className="text-xl font-bold text-gray-900">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-5 py-3 flex items-center justify-between z-10 flex-shrink-0">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 pr-2">
                 The Services We Provide
               </h2>
               <button
                 onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1 flex-shrink-0"
                 aria-label="Close modal"
               >
                 <svg
@@ -293,11 +293,11 @@ export default function Services() {
 
             {/* Scrollable Modal Content */}
             <div className="overflow-y-auto flex-1">
-              <div className="p-4">
+              <div className="p-4 sm:p-5">
                 {/* Service Icon and Title */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="text-4xl">{selectedService.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <div className="text-3xl sm:text-4xl">{selectedService.icon}</div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                     {selectedService.title}
                   </h3>
                 </div>
@@ -307,9 +307,9 @@ export default function Services() {
                   {selectedService.subServices.map((subService, index) => (
                     <li
                       key={index}
-                      className="flex items-center gap-2 text-gray-700"
+                      className="flex items-start gap-2 text-gray-700"
                     >
-                      <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <svg
                           className="w-3 h-3 text-blue-600"
                           fill="currentColor"
@@ -322,7 +322,7 @@ export default function Services() {
                           />
                         </svg>
                       </div>
-                      <span className="text-sm">{subService}</span>
+                      <span className="text-sm sm:text-base">{subService}</span>
                     </li>
                   ))}
                 </ul>

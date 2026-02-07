@@ -83,14 +83,14 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-gray-100 py-20">
+    <section id="contact" className="bg-gray-100 py-12 sm:py-16 lg:py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Get In Touch
           </h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto px-2">
             Have a project in mind? Lets discuss how we can help bring your
             app idea to life. Fill out the form below and well get back to you
             as soon as possible.
@@ -98,14 +98,14 @@ export default function ContactForm() {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-gray-50 rounded-2xl p-8 lg:p-12 shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-5 sm:p-8 lg:p-12 shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Name and Email Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-semibold text-gray-900 mb-2"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1.5 sm:mb-2"
                 >
                   Full Name <span className="text-red-500">*</span>
                 </label>
@@ -116,14 +116,14 @@ export default function ContactForm() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   placeholder="John Doe"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-semibold text-gray-900 mb-2"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1.5 sm:mb-2"
                 >
                   Email Address <span className="text-red-500">*</span>
                 </label>
@@ -134,18 +134,18 @@ export default function ContactForm() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   placeholder="john@example.com"
                 />
               </div>
             </div>
 
             {/* Phone and Subject Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-semibold text-gray-900 mb-2"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1.5 sm:mb-2"
                 >
                   Phone Number
                 </label>
@@ -155,14 +155,14 @@ export default function ContactForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-semibold text-gray-900 mb-2"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1.5 sm:mb-2"
                 >
                   Subject <span className="text-red-500">*</span>
                 </label>
@@ -173,7 +173,7 @@ export default function ContactForm() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -183,7 +183,7 @@ export default function ContactForm() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-semibold text-gray-900 mb-2"
+                className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1.5 sm:mb-2"
               >
                 Message <span className="text-red-500">*</span>
               </label>
@@ -191,10 +191,10 @@ export default function ContactForm() {
                 id="message"
                 name="message"
                 required
-                rows={6}
+                rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors resize-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors resize-none"
                 placeholder="Tell us about your project..."
               />
             </div>
@@ -204,7 +204,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>
@@ -254,7 +254,7 @@ export default function ContactForm() {
             {/* Status Message */}
             {submitStatus.type && (
               <div
-                className={`p-4 rounded-lg ${
+                className={`p-3 sm:p-4 rounded-lg ${
                   submitStatus.type === "success"
                     ? "bg-green-50 border-2 border-green-200 text-green-800"
                     : "bg-red-50 border-2 border-red-200 text-red-800"
@@ -263,7 +263,7 @@ export default function ContactForm() {
                 <div className="flex items-center gap-2">
                   {submitStatus.type === "success" ? (
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -275,7 +275,7 @@ export default function ContactForm() {
                     </svg>
                   ) : (
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -286,13 +286,13 @@ export default function ContactForm() {
                       />
                     </svg>
                   )}
-                  <p className="font-medium">{submitStatus.message}</p>
+                  <p className="text-xs sm:text-sm font-medium">{submitStatus.message}</p>
                 </div>
               </div>
             )}
 
             {/* Note */}
-            <p className="text-sm text-gray-500 text-center">
+            <p className="text-xs sm:text-sm text-gray-500 text-center px-2">
               By submitting this form, you agree to our privacy policy. We will
               never share your information with third parties.
             </p>
