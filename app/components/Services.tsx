@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useScrollLock } from "../hooks/useScrollLock";
+import ContactForm from "./ContactForm";
 
 interface Service {
   id: string;
@@ -120,15 +121,28 @@ const services: Service[] = [
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  useScrollLock(!!selectedService);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  useScrollLock(!!selectedService || isContactFormOpen);
 
   const openModal = (service: Service) => {
     setSelectedService(service);
   };
-//do again
 
   const closeModal = () => {
     setSelectedService(null);
+  };
+
+  const currentIndex = selectedService
+    ? services.findIndex((s) => s.id === selectedService.id)
+    : -1;
+  const prevService = currentIndex > 0 ? services[currentIndex - 1] : null;
+  const nextService = currentIndex >= 0 && currentIndex < services.length - 1 ? services[currentIndex + 1] : null;
+
+  const goToPrev = () => {
+    if (prevService) setSelectedService(prevService);
+  };
+  const goToNext = () => {
+    if (nextService) setSelectedService(nextService);
   };
 
   return (
@@ -152,7 +166,7 @@ export default function Services() {
 
           {/* Right Side - Scrollable Service Cards */}
           <div className="lg:col-span-2">
-            <div className="relative">
+            <div className="relative md:px-8 lg:px-10">
               <div className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 sm:-mx-0 px-4 sm:px-0">
                 {services.map((service) => (
                   <div
@@ -203,7 +217,7 @@ export default function Services() {
 
               {/* Navigation Arrows - Hidden on mobile, visible on larger screens */}
               <button
-                className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
+                className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll left"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -228,7 +242,7 @@ export default function Services() {
                 </svg>
               </button>
               <button
-                className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
+                className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 bg-blue-600 text-white w-10 h-10 rounded-full items-center justify-center hover:bg-blue-700 transition-colors shadow-lg z-10"
                 aria-label="Scroll right"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -328,6 +342,76 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+
+            {/* Modal Footer: arrows (left) + Create a brief (right) */}
+            <div className="flex-shrink-0 border-t border-gray-200 px-4 sm:px-5 py-3 flex items-center justify-between gap-4 bg-white">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={goToPrev}
+                  disabled={!prevService}
+                  className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors disabled:opacity-40 disabled:pointer-events-none"
+                  aria-label="Previous service"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={goToNext}
+                  disabled={!nextService}
+                  className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors disabled:opacity-40 disabled:pointer-events-none"
+                  aria-label="Next service"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsContactFormOpen(true)}
+                className="bg-gray-800 text-white px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-900 transition-colors flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Create a brief
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Form Modal (opened from Create a brief) */}
+      {isContactFormOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-md z-[60] flex items-center justify-center p-2 sm:p-4"
+          onClick={() => setIsContactFormOpen(false)}
+        >
+          <div
+            className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl relative flex flex-col z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between flex-shrink-0 z-10">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Create a brief</h2>
+              <button
+                type="button"
+                onClick={() => setIsContactFormOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+                aria-label="Close modal"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="overflow-y-auto flex-1 bg-white">
+              <div className="p-4 sm:p-6 lg:p-8">
+                <ContactForm isModal />
               </div>
             </div>
           </div>

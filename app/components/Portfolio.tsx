@@ -113,19 +113,20 @@ export default function Portfolio() {
             </button>
           </div>
 
-          {/* Right Column - Carousel (remaining width) */}
+          {/* Right Column - Carousel (remaining width): 2 full + 0.5 card visible, arrows left/right like Services */}
           <div className="lg:col-span-7 relative order-1 lg:order-2">
-            {/* Scrollable Container */}
-            <div className="relative overflow-hidden">
-              <div
-                ref={scrollContainerRef}
-                className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 -mx-4 sm:-mx-0 px-4 sm:px-0"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              >
+            <div className="relative sm:px-8 lg:px-10">
+              {/* Scrollable Container - card width sized so ~2.5 cards visible (2 full + 1 half) */}
+              <div className="overflow-hidden">
+                <div
+                  ref={scrollContainerRef}
+                  className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 -mx-4 sm:-mx-0 px-4 sm:px-0"
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
                 {projects.map((project) => (
                   <div
                     key={project.id}
-                    className="flex-shrink-0 w-[280px] sm:w-72 lg:w-80 bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg"
+                    className="flex-shrink-0 w-[140px] min-w-[140px] sm:w-[260px] sm:min-w-0 sm:max-w-[260px] lg:max-w-[280px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg"
                   >
                     {/* Visual Asset Section */}
                     <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-50 p-2 sm:p-3">
@@ -168,7 +169,67 @@ export default function Portfolio() {
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
+
+              {/* Left arrow - beside first card (like Services We Provide) */}
+              <button
+                type="button"
+                onClick={() => {
+                  const el = scrollContainerRef.current;
+                  if (el) el.scrollBy({ left: -288, behavior: "smooth" });
+                }}
+                className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-200 items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                aria-label="Scroll left"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              {/* Right arrow - beside last card */}
+              <button
+                type="button"
+                onClick={() => {
+                  const el = scrollContainerRef.current;
+                  if (el) el.scrollBy({ left: 288, behavior: "smooth" });
+                }}
+                className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-200 items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                aria-label="Scroll right"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile: arrow row below cards with gap */}
+            <div className="flex sm:hidden justify-center gap-4 mt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  const el = scrollContainerRef.current;
+                  if (el) el.scrollBy({ left: -156, behavior: "smooth" });
+                }}
+                className="w-10 h-10 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:bg-gray-100"
+                aria-label="Scroll left"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const el = scrollContainerRef.current;
+                  if (el) el.scrollBy({ left: 156, behavior: "smooth" });
+                }}
+                className="w-10 h-10 rounded-full bg-white shadow border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:bg-gray-100"
+                aria-label="Scroll right"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
 
           </div>
