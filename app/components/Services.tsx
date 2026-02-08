@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 interface Service {
   id: string;
@@ -119,6 +120,7 @@ const services: Service[] = [
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  useScrollLock(!!selectedService);
 
   const openModal = (service: Service) => {
     setSelectedService(service);

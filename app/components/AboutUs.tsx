@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 interface TeamMember {
   id: number;
@@ -69,6 +70,7 @@ export default function AboutUs() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  useScrollLock(isBottomSheetOpen || (isModalOpen && !!selectedMember));
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const agencyDescription = `Fizzup Software, a premier agency in Android App Development and iOS App Development, excels in creating high-quality, scalable mobile apps. Our expertise extends to AI integration, dating apps, Uber-like food delivery app development, E-Commerce solutions, and custom mobile applications tailored to your business needs. We combine cutting-edge technology with user-centric design to deliver apps that drive business growth and user engagement.`;

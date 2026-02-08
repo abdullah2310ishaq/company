@@ -1,22 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ContactForm from "./ContactForm";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  useEffect(() => {
-    if (isDialogOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isDialogOpen]);
+  useScrollLock(isDialogOpen);
 
   return (
     <section id="home" className="relative w-full bg-gray-100 overflow-hidden">

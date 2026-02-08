@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 interface Project {
   id: number;
@@ -43,6 +44,7 @@ export default function Portfolio() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  useScrollLock(!!selectedProject || isCalendlyOpen);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);

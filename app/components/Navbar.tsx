@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  useScrollLock(isCalendlyOpen);
 
   useEffect(() => {
     const handleScroll = () => {

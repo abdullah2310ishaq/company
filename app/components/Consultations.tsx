@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useScrollLock } from "../hooks/useScrollLock";
 
 interface ConsultationVideo {
   id: string;
@@ -63,6 +64,7 @@ const consultations: ConsultationVideo[] = [
 
 export default function Consultations() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  useScrollLock(!!selectedVideo);
 
   const handleVideoClick = (youtubeId: string) => {
     setSelectedVideo(youtubeId);
