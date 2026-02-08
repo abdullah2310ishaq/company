@@ -1,11 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactForm from "./ContactForm";
 
 export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  useEffect(() => {
+    if (isDialogOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isDialogOpen]);
 
   return (
     <section id="home" className="relative w-full bg-gray-100 overflow-hidden">
@@ -77,40 +88,47 @@ export default function Hero() {
       {/* Divider */}
       <div className="border-t border-gray-300"></div>
 
-      {/* Contact Dialog */}
+      {/* Contact Dialog - same style as portfolio modal */}
       {isDialogOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
-          {/* Minimal backdrop - just for click outside */}
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4"
+          onClick={() => setIsDialogOpen(false)}
+        >
           <div
-            className="absolute inset-0 bg-black/10 backdrop-blur-sm"
-            onClick={() => setIsDialogOpen(false)}
-          ></div>
-
-          {/* Dialog Box */}
-          <div className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto z-10">
-            {/* Close Button */}
-            <button
-              onClick={() => setIsDialogOpen(false)}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 transition-colors z-20 p-1"
-            >
-              <svg
-                className="w-5 h-5 sm:w-6 sm:h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl relative flex flex-col z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header: Contact us + Close */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between flex-shrink-0 z-10">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+                Contact us
+              </h2>
+              <button
+                onClick={() => setIsDialogOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+                aria-label="Close modal"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
 
-            {/* Contact Form Component */}
-            <div className="p-4 sm:p-5 lg:p-6">
-              <ContactForm />
+            {/* Scrollable content - one background color */}
+            <div className="overflow-y-auto flex-1 bg-white">
+              <div className="p-4 sm:p-6 lg:p-8">
+                <ContactForm isModal />
+              </div>
             </div>
           </div>
         </div>

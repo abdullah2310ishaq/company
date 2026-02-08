@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-export default function ContactForm() {
+type ContactFormProps = { isModal?: boolean };
+
+export default function ContactForm({ isModal = false }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -82,23 +84,8 @@ export default function ContactForm() {
     }
   };
 
-  return (
-    <section id="contact" className="bg-gray-100 py-12 sm:py-16 lg:py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Get In Touch
-          </h2>
-          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto px-2">
-            Have a project in mind? Lets discuss how we can help bring your
-            app idea to life. Fill out the form below and well get back to you
-            as soon as possible.
-          </p>
-        </div>
-
-        {/* Contact Form */}
-        <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-5 sm:p-8 lg:p-12 shadow-lg">
+  const formContent = (
+    <div className={isModal ? "bg-white" : "bg-gray-50 rounded-xl sm:rounded-2xl p-5 sm:p-8 lg:p-12 shadow-lg"}>
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Name and Email Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -116,7 +103,7 @@ export default function ContactForm() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none transition-colors bg-white"
                   placeholder="John Doe"
                 />
               </div>
@@ -134,7 +121,7 @@ export default function ContactForm() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none transition-colors bg-white"
                   placeholder="john@example.com"
                 />
               </div>
@@ -155,7 +142,7 @@ export default function ContactForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none transition-colors bg-white"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
@@ -173,7 +160,7 @@ export default function ContactForm() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none transition-colors bg-white"
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -194,7 +181,7 @@ export default function ContactForm() {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors resize-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none transition-colors resize-none bg-white"
                 placeholder="Tell us about your project..."
               />
             </div>
@@ -297,8 +284,24 @@ export default function ContactForm() {
               never share your information with third parties.
             </p>
           </form>
-        </div>
+    </div>
+  );
 
+  if (isModal) return formContent;
+  return (
+    <section id="contact" className="bg-gray-100 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+            Get In Touch
+          </h2>
+          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto px-2">
+            Have a project in mind? Lets discuss how we can help bring your
+            app idea to life. Fill out the form below and well get back to you
+            as soon as possible.
+          </p>
+        </div>
+        {formContent}
       </div>
     </section>
   );
