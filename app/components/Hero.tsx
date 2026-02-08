@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
           {/* Left Side - Profile and Content */}
-          <div className="flex flex-col justify-start space-y-3 sm:space-y-4 lg:space-y-5 lg:pt-2 order-2 lg:order-1">
+          <div className="flex flex-col justify-start space-y-3 sm:space-y-4 lg:space-y-5 lg:pt-2 order-1">
             {/* Profile Picture */}
             <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-lg overflow-hidden flex-shrink-0">
               <Image
@@ -32,7 +32,7 @@ export default function Hero() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
               Mobile App Development Agency for Android App and iOS App Development
             </h1>
 
@@ -59,7 +59,7 @@ export default function Hero() {
           </div>
 
           {/* Right Side - Hero Image (parent controls clipping; Image just fills) */}
-          <div className="relative w-full order-1 lg:order-2 mt-2 sm:mt-3 lg:mt-4">
+          <div className="relative w-full order-2 mt-2 sm:mt-3 lg:mt-4">
             <div className="relative w-full h-[200px] sm:h-[250px] md:h-[290px] lg:h-[310px] xl:h-[330px] overflow-hidden rounded-3xl shadow-lg">
               <Image
                 src="/hero.jpeg"
