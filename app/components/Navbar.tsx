@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useScrollLock } from "../hooks/useScrollLock";
 
 export default function Navbar() {
@@ -15,7 +14,13 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 600);
+      const aboutSection = document.getElementById("about");
+      // CEO navbar appears when scrolled past About section; close drawer when switching
+      const belowAbout = aboutSection
+        ? scrollPosition >= aboutSection.offsetTop + aboutSection.offsetHeight
+        : scrollPosition > 600;
+      setIsScrolled(belowAbout);
+      if (belowAbout) setIsMobileMenuOpen(false);
 
       // Determine active section based on scroll position
       const sections = ["home", "about", "portfolio", "services", "contact"];
@@ -33,7 +38,9 @@ export default function Navbar() {
 
       if (currentSection) {
         setActiveSection(currentSection.id);
-      } else if (scrollPosition < 600) {
+      } else if (aboutSection && scrollPosition < aboutSection.offsetTop) {
+        setActiveSection("home");
+      } else if (!aboutSection && scrollPosition < 600) {
         setActiveSection("home");
       }
     };
@@ -132,38 +139,14 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-              <div className="md:hidden border-t border-gray-200 py-4">
-                <div className="flex flex-col space-y-4">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      className={`text-base font-medium transition-colors ${
-                        activeSection === link.id
-                          ? "text-gray-900"
-                          : "text-gray-600 hover:text-gray-900"
-                      }`}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                  <button className="bg-gray-900 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors w-full text-left">
-                    Request Pricing
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         ) : (
           // Scrolled Navbar (After hero section)
           <>
             {/* Top Section - CEO Profile and CTA Buttons */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between py-2 md:py-3 border-b border-gray-200">
-                {/* CEO Profile - Left */}
+              <div className="flex items-center justify-between py-2 md:py-3">
+                {/* CEO Profile - Left (mobile: show name like reference; desktop: unchanged) */}
                 <div className="flex items-center gap-2 md:gap-3 flex-shrink-0 min-w-0">
                   <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0">
                     <Image
@@ -174,11 +157,14 @@ export default function Navbar() {
                     />
                     <div className="absolute bottom-0 right-0 w-2.5 h-2.5 md:w-3 md:h-3 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
-                  <div className="min-w-0 hidden sm:block">
-                    <h3 className="text-sm md:text-base font-bold text-gray-900 truncate">
-                      Muhammad Salman
+                  <div className="min-w-0 block">
+                    <h3 className="text-sm md:text-base font-bold text-gray-900 truncate leading-tight">
+                      Wajahat Malek
                     </h3>
-                    <p className="text-xs text-gray-600 truncate">C.E.O @ Fizzup Software</p>
+                    <p className="text-[11px] md:text-xs text-gray-600 truncate mt-0.5">C.E.O @ Fizzup Software</p>
+                    <div className="hidden md:flex items-center gap-1.5 mt-1 flex-wrap">
+          
+                    </div>
                   </div>
                 </div>
 
@@ -253,43 +239,65 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Mobile Menu */}
-              {isMobileMenuOpen && (
-                <div className="md:hidden border-t border-gray-200 py-4">
-                  <div className="flex flex-col space-y-4">
-                    {navLinks.map((link) => (
-                      <a
-                        key={link.id}
-                        href={link.href}
-                        onClick={(e) => handleLinkClick(e, link.href)}
-                        className={`text-base font-medium transition-colors ${
-                          activeSection === link.id
-                            ? "text-gray-900"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`}
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                    <button className="bg-gray-900 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors w-full text-left">
-                      Request Pricing
-                    </button>
-                    <button 
-                      onClick={openCalendly}
-                      className="bg-gray-900 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors w-full text-left flex items-center gap-2"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                      Chat with us
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           </>
         )}
       </nav>
+
+      {/* Mobile only: right-side drawer (same for initial and after-About) */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-[60]" aria-modal="true" role="dialog">
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute inset-0 bg-black/30"
+            aria-label="Close menu"
+          />
+          <div className="absolute right-0 top-0 bottom-0 w-[280px] max-w-[85vw] bg-white shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <span className="text-lg font-bold text-gray-900">Menu</span>
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 text-gray-500 hover:text-gray-700"
+                aria-label="Close menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex flex-col gap-1 p-4 overflow-y-auto">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`py-3 px-2 text-base font-medium rounded-lg ${
+                    activeSection === link.id ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="border-t border-gray-200 mt-2 pt-4 space-y-2">
+                <button className="w-full bg-gray-900 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 text-left">
+                  Request Pricing
+                </button>
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); openCalendly(); }}
+                  className="w-full bg-gray-900 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  Book a call
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Calendly Modal */}
       {isCalendlyOpen && (
